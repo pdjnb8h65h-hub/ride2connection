@@ -29,6 +29,7 @@
     font-size:17px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
   }
   h1,h2,h3,.display{
     font-family:'Bricolage Grotesque',sans-serif;
@@ -111,6 +112,90 @@
     white-space:nowrap;
   }
   .nav-cta:hover{background:var(--clay-deep);}
+
+  /* Lucide-style icons */
+  .icon{
+    width:18px; height:18px;
+    stroke:currentColor;
+    stroke-width:2;
+    fill:none;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    flex-shrink:0;
+    vertical-align:-4px;
+  }
+  .btn-icon{width:16px; height:16px; stroke-width:2.4; margin-left:2px;}
+
+  /* Mobile nav toggle */
+  .nav-toggle{
+    display:none;
+    background:none;
+    border:none;
+    padding:8px;
+    cursor:pointer;
+    width:38px; height:38px;
+    align-items:center; justify-content:center;
+  }
+  .nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
+    content:"";
+    display:block;
+    width:22px; height:2px;
+    background:#fff;
+    position:relative;
+    transition:background .2s ease, transform .2s ease;
+  }
+  header.scrolled .nav-toggle span,
+  header.scrolled .nav-toggle span::before,
+  header.scrolled .nav-toggle span::after{background:var(--ink);}
+  header.menu-open .nav-toggle span,
+  header.menu-open .nav-toggle span::before,
+  header.menu-open .nav-toggle span::after{background:var(--ink);}
+  .nav-toggle span::before{position:absolute; top:-7px;}
+  .nav-toggle span::after{position:absolute; top:7px;}
+  header.menu-open .nav-toggle span{background:transparent;}
+  header.menu-open .nav-toggle span::before{top:0; transform:rotate(45deg);}
+  header.menu-open .nav-toggle span::after{top:0; transform:rotate(-45deg);}
+
+  .mobile-panel{
+    display:none;
+    position:fixed;
+    top:0; right:0;
+    width:min(78vw, 320px);
+    height:100vh;
+    height:100dvh;
+    background:var(--sand);
+    z-index:60;
+    padding:100px 30px 30px;
+    transform:translateX(100%);
+    transition:transform .3s ease;
+    box-shadow:-20px 0 40px rgba(28,26,23,0.14);
+  }
+  .mobile-panel.open{transform:translateX(0);}
+  .mobile-panel ul{list-style:none; margin:0; padding:0; display:grid; gap:6px;}
+  .mobile-panel a{
+    display:block;
+    text-decoration:none;
+    color:var(--ink);
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:600;
+    font-size:22px;
+    padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-panel .nav-cta{
+    display:inline-block;
+    margin-top:26px;
+    text-align:center;
+  }
+  .nav-overlay{
+    display:none;
+    position:fixed; inset:0;
+    background:rgba(15,13,10,0.4);
+    z-index:55;
+    opacity:0;
+    transition:opacity .3s ease;
+  }
+  .nav-overlay.open{display:block; opacity:1;}
 
   /* HERO — full-bleed image with overlay text */
   .hero{
@@ -334,7 +419,10 @@
     display:flex; gap:28px; justify-content:center; flex-wrap:wrap;
     margin-top:36px; font-size:14.5px;
   }
-  .contact-methods a{text-decoration:none; color:var(--ink-soft);}
+  .contact-methods a, .contact-methods span{
+    text-decoration:none; color:var(--ink-soft);
+    display:inline-flex; align-items:center; gap:8px;
+  }
   .contact-methods a:hover{color:var(--ink);}
 
   /* Footer */
@@ -355,20 +443,63 @@
 
   @media (max-width: 900px){
     .promise-grid, .about-grid, .pricing-inner{grid-template-columns:1fr;}
-    .about-collage{margin-bottom:50px;}
+    .about-collage{margin-bottom:70px;}
     .service-grid{grid-template-columns:repeat(2,1fr);}
     .hero{height:82vh; min-height:520px; margin-top:-74px;}
-    .nav-links{display:none;}
+    .nav-links, header .nav-cta{display:none;}
+    .nav-toggle{display:flex;}
     .services, .about, .pricing, .cta-band, .promise{padding:64px 0;}
   }
-  @media (max-width: 540px){
-    .service-grid{grid-template-columns:1fr;}
-    .about-collage .float-card{width:60%;}
+  @media (min-width: 901px){
+    .nav-toggle, .mobile-panel, .nav-overlay{display:none !important;}
+  }
+  @media (max-width: 640px){
     .wrap{padding:0 20px;}
-    .btn-row{flex-direction:column; align-items:flex-start;}
-    .stat-strip .wrap{gap:18px;}
-    .hero{height:78vh; min-height:480px;}
-    .hero-content{padding-bottom:44px;}
+    .announce{font-size:12px; padding:8px 14px; line-height:1.4;}
+    .nav{padding:14px 20px;}
+    .brand{font-size:18px;}
+
+    .hero{height:auto; min-height:560px; margin-top:-70px; padding-top:70px;}
+    .hero-content{padding-bottom:36px;}
+    .hero-top p{font-size:15.5px; margin-bottom:22px;}
+    .btn-row{flex-direction:column; align-items:stretch; gap:12px;}
+    .btn-primary, .btn-ghost{justify-content:center; text-align:center;}
+    .btn-ghost{border:1.5px solid rgba(255,255,255,0.6); border-radius:999px; padding:14px 24px;}
+
+    .stat-strip{padding:26px 0;}
+    .stat-strip .wrap{display:grid; grid-template-columns:1fr 1fr; gap:22px 16px;}
+    .stat .num{font-size:24px;}
+    .stat .label{font-size:12px;}
+
+    .promise, .services, .about, .pricing, .cta-band{padding:52px 0;}
+    .promise h2, .section-head h2, .about h2, .pricing h2, .cta-band h2{font-size:26px;}
+    .promise-list li{font-size:14.5px; padding:12px 14px;}
+
+    .section-head{margin-bottom:32px;}
+    .service-grid{grid-template-columns:1fr; gap:14px;}
+    .service-card .body{padding:18px;}
+
+    .about-collage .float-card{width:56%; bottom:-22px; left:-16px; border-width:4px;}
+    .about-collage{margin-bottom:56px;}
+    .cred-row{gap:8px;}
+    .cred{font-size:12px; padding:8px 13px;}
+
+    .quote-section{padding:56px 0;}
+    .quote-section blockquote{font-size:19px;}
+
+    .price-row{padding:15px 18px; font-size:13.5px; flex-wrap:wrap; gap:4px;}
+    .price-row .amount{font-size:15px;}
+
+    .cta-band p{font-size:15.5px;}
+    .contact-methods{flex-direction:column; align-items:center; gap:14px;}
+
+    .footer-grid{flex-direction:column; gap:26px;}
+    .footer-bottom{flex-direction:column; align-items:flex-start; gap:6px;}
+  }
+
+  @media (max-width: 380px){
+    .hero-top h1{font-size:28px;}
+    .stat-strip .wrap{grid-template-columns:1fr 1fr;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -390,8 +521,20 @@
       <li><a href="#kontakt">Kontakt</a></li>
     </ul>
     <a href="#kontakt" class="nav-cta">Termin vereinbaren</a>
+    <button class="nav-toggle" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
   </div>
 </header>
+
+<div class="nav-overlay"></div>
+<nav class="mobile-panel">
+  <ul>
+    <li><a href="#angebot">Angebot</a></li>
+    <li><a href="#ueber-mich">Über mich</a></li>
+    <li><a href="#preise">Preise</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="nav-cta">Termin vereinbaren</a>
+</nav>
 
 <main id="top">
 
@@ -406,7 +549,9 @@
         <h1>Ride2Connection – <span>Klassische Reitkunst</span> mit System</h1>
         <p>Dein Traum ist ein stolzes, kraftvolles Pferd voller Ausdruck, das fein und aufmerksam auf deine leisesten Signale reagiert? Ein Training, das dein Pferd strahlen lässt, es als Lebewesen achtet und es nicht einfach nur benutzt – für die Momente wahrer Verbindung: „Connection".</p>
         <div class="btn-row">
-          <a href="#kontakt" class="btn-primary">Jetzt Termin vereinbaren →</a>
+          <a href="#kontakt" class="btn-primary">Jetzt Termin vereinbaren
+            <svg class="icon btn-icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
           <a href="#angebot" class="btn-ghost">Angebot ansehen</a>
         </div>
       </div>
@@ -432,12 +577,12 @@
         <div class="eyebrow">Mobiler Reitunterricht rund um Rosenheim, Miesbach, Sauerlach, Aying, Ebersberg Süd</div>
         <h2>Du möchtest ...</h2>
         <ul class="promise-list">
-          <li><span class="check">✓</span>dein Pferd gesundheitsbewusst und fein ausbilden?</li>
-          <li><span class="check">✓</span>dein sehr schiefes, unausbalanciertes oder bereits körperlich beeinträchtigtes Pferd so fördern, dass das Reiten wieder Freude macht oder überhaupt erst möglich wird?</li>
-          <li><span class="check">✓</span>deine Körpersprache so einsetzen, dass dein Pferd dich verstehen kann?</li>
-          <li><span class="check">✓</span>Hilfen geben, die wirklich helfen?</li>
-          <li><span class="check">✓</span>sinnvolles Krafttraining für dein Pferd, anstelle stundenlanges Arbeiten über Tempo?</li>
-          <li><span class="check">✓</span>einen strukturierten Trainingsaufbau mit kleinschrittigen Übungen, die dein Pferd verstehen kann?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>dein Pferd gesundheitsbewusst und fein ausbilden?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>dein sehr schiefes, unausbalanciertes oder bereits körperlich beeinträchtigtes Pferd so fördern, dass das Reiten wieder Freude macht oder überhaupt erst möglich wird?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>deine Körpersprache so einsetzen, dass dein Pferd dich verstehen kann?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>Hilfen geben, die wirklich helfen?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>sinnvolles Krafttraining für dein Pferd, anstelle stundenlanges Arbeiten über Tempo?</li>
+          <li><span class="check"><svg class="icon" style="width:12px;height:12px;stroke-width:3;color:#fff;" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span>einen strukturierten Trainingsaufbau mit kleinschrittigen Übungen, die dein Pferd verstehen kann?</li>
         </ul>
         <p style="margin-top:20px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:19px;">Dann passen wir zusammen.</p>
       </div>
@@ -579,11 +724,22 @@
       <div class="eyebrow" style="justify-content:center;">Kontakt</div>
       <h2>Jetzt Termin vereinbaren</h2>
       <p>Schreib mir eine Nachricht oder ruf einfach an – ich melde mich zurück und wir finden einen passenden Termin für dich und dein Pferd.</p>
-      <a href="https://api.whatsapp.com/send?phone=%2B4915773993898" class="btn-primary">Termin per WhatsApp anfragen →</a>
+      <a href="https://api.whatsapp.com/send?phone=%2B4915773993898" class="btn-primary">Termin per WhatsApp anfragen
+        <svg class="icon btn-icon" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
       <div class="contact-methods">
-        <a href="tel:+4915773993898">📞 0157 739 93898</a>
-        <a href="mailto:ride2connection@web.de">✉️ ride2connection@web.de</a>
-        <span>📍 Bürgermeister-Huber-Str. 36, 83052 Bruckmühl</span>
+        <a href="tel:+4915773993898">
+          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          0157 739 93898
+        </a>
+        <a href="mailto:ride2connection@web.de">
+          <svg class="icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          ride2connection@web.de
+        </a>
+        <span>
+          <svg class="icon" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          Bürgermeister-Huber-Str. 36, 83052 Bruckmühl
+        </span>
       </div>
     </div>
   </section>
@@ -624,6 +780,32 @@
   };
   toggleHeader();
   window.addEventListener('scroll', toggleHeader, { passive: true });
+
+  const navToggle = document.querySelector('.nav-toggle');
+  const mobilePanel = document.querySelector('.mobile-panel');
+  const navOverlay = document.querySelector('.nav-overlay');
+
+  const closeMenu = () => {
+    header.classList.remove('menu-open');
+    mobilePanel.classList.remove('open');
+    navOverlay.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  };
+  const openMenu = () => {
+    header.classList.add('menu-open');
+    mobilePanel.classList.add('open');
+    navOverlay.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+  };
+
+  navToggle.addEventListener('click', () => {
+    if (mobilePanel.classList.contains('open')) closeMenu();
+    else openMenu();
+  });
+  navOverlay.addEventListener('click', closeMenu);
+  mobilePanel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
 </script>
 
 </body>
