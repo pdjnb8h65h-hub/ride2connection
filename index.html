@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobiler Reitunterricht Rosenheim, Miesbach, Sauerlach, Aying & Ebersberg | Ride2Connection</title>
+<meta name="description" content="Als Reitlehrerin und Pferdetrainerin unterstützt Jana Globokar dich und dein Pferd bei der Grundausbildung, bei abwechslungsreichem Training und bei Rittigkeitsproblemen südöstlich von München rund um Bad Aibling. Die klassische Reitkunst bringt dein Pferd in körperliche und mentale Balance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#faf7f2;
+    --sand-deep:#f0e9dd;
+    --clay:#c1602f;
+    --clay-deep:#9c4a22;
+    --ink:#1c1a17;
+    --ink-soft:#4a463f;
+    --sage:#5c6b52;
+    --line:rgba(28,26,23,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    color:var(--ink);
+    margin:0;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  .eyebrow{
+    text-transform:uppercase;
+    font-size:12px;
+    letter-spacing:0.14em;
+    color:var(--clay-deep);
+    font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:16px; height:1.5px;
+    background:var(--clay);
+  }
+
+  /* Announce bar */
+  .announce{
+    background:var(--ink);
+    color:var(--sand);
+    text-align:center;
+    font-size:13px;
+    padding:9px 16px;
+    letter-spacing:0.01em;
+  }
+  .announce strong{color:#e8a878;}
+
+  /* Header */
+  header{
+    position:sticky;
+    top:0; left:0; right:0;
+    z-index:50;
+    background:transparent;
+    border-bottom:none;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  header.scrolled{
+    background:rgba(250,247,242,0.9);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:20px;
+    text-decoration:none;
+    color:#fff;
+    display:flex; align-items:center; gap:9px;
+  }
+  header.scrolled .brand{color:var(--ink);}
+  .brand-dot{width:9px;height:9px;border-radius:50%;background:var(--clay);}
+  .nav-links{display:flex; gap:32px; list-style:none; margin:0; padding:0; font-size:14.5px; font-weight:500;}
+  .nav-links a{text-decoration:none; color:rgba(255,255,255,0.9);}
+  header.scrolled .nav-links a{color:var(--ink-soft);}
+  .nav-links a:hover{opacity:0.75;}
+  .nav-cta{
+    background:var(--clay);
+    color:#fff;
+    padding:11px 22px;
+    border-radius:999px;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+    transition:background .2s ease;
+    white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--clay-deep);}
+
+  /* HERO — full-bleed image with overlay text */
+  .hero{
+    position:relative;
+    height:88vh;
+    min-height:600px;
+    max-height:860px;
+    margin-top:-82px;
+    overflow:hidden;
+  }
+  .hero-media{
+    position:absolute;
+    inset:0;
+    width:100%; height:100%;
+  }
+  .hero-media img{width:100%;height:100%;object-fit:cover; object-position:center 55%;}
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(0deg, rgba(15,13,10,0.88) 0%, rgba(15,13,10,0.58) 38%, rgba(15,13,10,0.2) 62%, rgba(15,13,10,0.05) 82%, rgba(15,13,10,0.15) 100%),
+      linear-gradient(180deg, rgba(15,13,10,0.35) 0%, rgba(15,13,10,0) 26%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding-bottom:64px;
+  }
+  .hero-content .eyebrow{color:#e8c39a;}
+  .hero-content .eyebrow::before{background:#e8c39a;}
+  .hero-top{max-width:760px;}
+  .hero-top h1{
+    color:#fff;
+    font-size:clamp(32px,4.6vw,54px);
+    line-height:1.06;
+    margin:16px 0 18px;
+  }
+  .hero-top h1 span{color:#e8a878;}
+  .hero-top p{font-size:17.5px; color:rgba(255,255,255,0.88); max-width:56ch; margin-bottom:26px;}
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--clay);
+    color:#fff;
+    padding:16px 28px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    border-radius:999px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .btn-primary:hover{background:var(--clay-deep); transform:translateY(-1px);}
+  .btn-ghost{
+    text-decoration:none;
+    color:#fff;
+    font-weight:600;
+    font-size:15px;
+    padding-bottom:2px;
+    border-bottom:1.5px solid rgba(255,255,255,0.6);
+  }
+  .btn-ghost:hover{border-color:#fff;}
+
+  /* Marquee style stat strip */
+  .stat-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:34px 0;
+  }
+  .stat-strip .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
+  .stat{min-width:140px;}
+  .stat .num{font-family:'Bricolage Grotesque',sans-serif; font-size:30px; font-weight:700; color:var(--clay);}
+  .stat .label{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+
+  /* Intro / promise */
+  .promise{padding:96px 0;}
+  .promise-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .promise-img{
+    border-radius:18px;
+    overflow:hidden;
+    aspect-ratio:5/4;
+  }
+  .promise-img img{width:100%; height:100%; object-fit:cover;}
+  .promise h2{font-size:clamp(28px,3.4vw,40px); margin:14px 0 20px; line-height:1.12;}
+  .promise-list{list-style:none; margin:0; padding:0; display:grid; gap:14px;}
+  .promise-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:15.5px; color:var(--ink-soft);
+    background:#fff;
+    padding:14px 16px;
+    border-radius:12px;
+    border:1px solid var(--line);
+  }
+  .promise-list li .check{
+    flex-shrink:0; width:20px; height:20px; border-radius:50%;
+    background:var(--sage); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; margin-top:1px;
+  }
+
+  /* Services */
+  .services{padding:96px 0; background:var(--sand-deep);}
+  .section-head{max-width:640px; margin-bottom:50px;}
+  .section-head h2{font-size:clamp(30px,3.6vw,42px); margin:14px 0 0; line-height:1.1;}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .service-card{
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .service-card:hover{transform:translateY(-4px); box-shadow:0 20px 40px rgba(28,26,23,0.08);}
+  .service-card .thumb{aspect-ratio:4/3; overflow:hidden;}
+  .service-card .thumb img{width:100%; height:100%; object-fit:cover;}
+  .service-card .body{padding:22px;}
+  .service-card h3{font-size:18px; margin-bottom:9px; line-height:1.25;}
+  .service-card p{font-size:14px; color:var(--ink-soft); margin:0;}
+
+  /* About */
+  .about{padding:96px 0;}
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-collage{position:relative;}
+  .about-collage .main{border-radius:18px; overflow:hidden; aspect-ratio:4/5;}
+  .about-collage .main img{width:100%;height:100%;object-fit:cover;}
+  .about-collage .float-card{
+    position:absolute;
+    bottom:-30px; left:-30px;
+    width:52%;
+    aspect-ratio:1/1;
+    border-radius:16px;
+    overflow:hidden;
+    border:6px solid var(--sand);
+    box-shadow:0 20px 40px rgba(28,26,23,0.16);
+  }
+  .about-collage .float-card img{width:100%;height:100%;object-fit:cover;}
+  .about h2{font-size:clamp(28px,3.4vw,38px); margin:14px 0 18px;}
+  .about p{font-size:16px; color:var(--ink-soft); margin-bottom:16px;}
+  .cred-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
+  .cred{
+    background:#fff;
+    border:1px solid var(--line);
+    padding:9px 16px;
+    font-size:13px;
+    border-radius:999px;
+    font-weight:500;
+  }
+
+  /* Quote */
+  .quote-section{padding:80px 0; text-align:center; background:var(--ink); color:var(--sand);}
+  .quote-section blockquote{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:500;
+    font-size:clamp(21px,2.8vw,30px);
+    max-width:800px;
+    margin:0 auto 18px;
+    line-height:1.4;
+  }
+  .quote-section cite{
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:#c99a72;
+  }
+
+  /* Pricing */
+  .pricing{padding:96px 0;}
+  .pricing-inner{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .pricing h2{font-size:clamp(28px,3.4vw,38px); margin:14px 0 16px;}
+  .price-card{
+    background:#fff;
+    border-radius:18px;
+    border:1px solid var(--line);
+    overflow:hidden;
+  }
+  .price-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:20px 26px;
+    border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .price-row:last-child{border-bottom:none;}
+  .price-row .amount{
+    font-family:'Bricolage Grotesque',sans-serif;
+    font-weight:700;
+    font-size:17px;
+    color:var(--clay-deep);
+    white-space:nowrap;
+  }
+  .price-row.highlight{background:#fbf1e8;}
+  .price-note{font-size:13.5px; color:var(--ink-soft); margin-top:16px;}
+
+  /* CTA */
+  .cta-band{padding:100px 0; text-align:center;}
+  .cta-band h2{font-size:clamp(30px,4vw,46px); margin:14px 0 18px;}
+  .cta-band p{max-width:52ch; margin:0 auto 36px; font-size:17px; color:var(--ink-soft);}
+  .contact-methods{
+    display:flex; gap:28px; justify-content:center; flex-wrap:wrap;
+    margin-top:36px; font-size:14.5px;
+  }
+  .contact-methods a{text-decoration:none; color:var(--ink-soft);}
+  .contact-methods a:hover{color:var(--ink);}
+
+  /* Footer */
+  footer{background:var(--ink); color:var(--sand); padding:56px 0 30px; font-size:13.5px;}
+  .footer-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+    padding-bottom:28px;
+    border-bottom:1px solid rgba(250,247,242,0.14);
+  }
+  .footer-brand{font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:18px; margin-bottom:8px;}
+  footer .col p{margin:3px 0; opacity:0.75;}
+  footer .col a{text-decoration:none; opacity:0.75;}
+  footer .col a:hover{opacity:1;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    padding-top:20px; opacity:0.55; font-size:12.5px;
+  }
+
+  @media (max-width: 900px){
+    .promise-grid, .about-grid, .pricing-inner{grid-template-columns:1fr;}
+    .about-collage{margin-bottom:50px;}
+    .service-grid{grid-template-columns:repeat(2,1fr);}
+    .hero{height:82vh; min-height:520px; margin-top:-74px;}
+    .nav-links{display:none;}
+    .services, .about, .pricing, .cta-band, .promise{padding:64px 0;}
+  }
+  @media (max-width: 540px){
+    .service-grid{grid-template-columns:1fr;}
+    .about-collage .float-card{width:60%;}
+    .wrap{padding:0 20px;}
+    .btn-row{flex-direction:column; align-items:flex-start;}
+    .stat-strip .wrap{gap:18px;}
+    .hero{height:78vh; min-height:480px;}
+    .hero-content{padding-bottom:44px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important; scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="announce">Wegen Umzug in den Landkreis Rosenheim: <strong>erste Kennenlern-Stunde zum halben Preis</strong></div>
+
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="brand"><span class="brand-dot"></span>Ride2Connection</a>
+    <ul class="nav-links">
+      <li><a href="#angebot">Angebot</a></li>
+      <li><a href="#ueber-mich">Über mich</a></li>
+      <li><a href="#preise">Preise</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#kontakt" class="nav-cta">Termin vereinbaren</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1758573951504-ca1d4bc94951?fm=jpg&q=80&w=1920&auto=format&fit=crop" alt="Braunes Pferd bei der klassischen Ausbildung in der Reitbahn">
+    </div>
+    <div class="wrap hero-content">
+      <div class="hero-top">
+        <div class="eyebrow">Mobiler Reitunterricht · Rosenheim, Miesbach, Sauerlach, Aying, Ebersberg Süd</div>
+        <h1>Ride2Connection – <span>Klassische Reitkunst</span> mit System</h1>
+        <p>Dein Traum ist ein stolzes, kraftvolles Pferd voller Ausdruck, das fein und aufmerksam auf deine leisesten Signale reagiert? Ein Training, das dein Pferd strahlen lässt, es als Lebewesen achtet und es nicht einfach nur benutzt – für die Momente wahrer Verbindung: „Connection".</p>
+        <div class="btn-row">
+          <a href="#kontakt" class="btn-primary">Jetzt Termin vereinbaren →</a>
+          <a href="#angebot" class="btn-ghost">Angebot ansehen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stat-strip">
+    <div class="wrap">
+      <div class="stat"><div class="num">45 €</div><div class="label">Unterrichtseinheit, ca. 60 Min.</div></div>
+      <div class="stat"><div class="num">20 km</div><div class="label">Anfahrt inklusive ab PLZ 83052</div></div>
+      <div class="stat"><div class="num">25 Jahre</div><div class="label">Erfahrung im Umgang mit Pferden</div></div>
+      <div class="stat"><div class="num">100 %</div><div class="label">mobil, direkt bei dir vor Ort</div></div>
+    </div>
+  </div>
+
+  <!-- PROMISE -->
+  <section class="promise" id="angebot">
+    <div class="wrap promise-grid">
+      <div class="promise-img">
+        <img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/reitlehrerin-rosenheim-high.jpg?enable-io=true&enable=upscale&crop=0.75%3A1&width=800" alt="Reitlehrerin aus Bruckmühl in Verbundenheit mit Pferd">
+      </div>
+      <div>
+        <div class="eyebrow">Mobiler Reitunterricht rund um Rosenheim, Miesbach, Sauerlach, Aying, Ebersberg Süd</div>
+        <h2>Du möchtest ...</h2>
+        <ul class="promise-list">
+          <li><span class="check">✓</span>dein Pferd gesundheitsbewusst und fein ausbilden?</li>
+          <li><span class="check">✓</span>dein sehr schiefes, unausbalanciertes oder bereits körperlich beeinträchtigtes Pferd so fördern, dass das Reiten wieder Freude macht oder überhaupt erst möglich wird?</li>
+          <li><span class="check">✓</span>deine Körpersprache so einsetzen, dass dein Pferd dich verstehen kann?</li>
+          <li><span class="check">✓</span>Hilfen geben, die wirklich helfen?</li>
+          <li><span class="check">✓</span>sinnvolles Krafttraining für dein Pferd, anstelle stundenlanges Arbeiten über Tempo?</li>
+          <li><span class="check">✓</span>einen strukturierten Trainingsaufbau mit kleinschrittigen Übungen, die dein Pferd verstehen kann?</li>
+        </ul>
+        <p style="margin-top:20px; font-family:'Bricolage Grotesque',sans-serif; font-weight:600; font-size:19px;">Dann passen wir zusammen.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Mein Angebot</div>
+        <h2>Reitunterricht und Pferdetraining südöstlich von München</h2>
+      </div>
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="thumb"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/20250719_164220-high-w2du3o.jpg?enable-io=true&enable=upscale&crop=1.33%3A1&width=600" alt="Gerittenes Pferd im Trab mit leichter Anlehnung – klassische Reitkunst"></div>
+          <div class="body">
+            <h3>Klassische Reitkunst</h3>
+            <p>Verschiedene Ausbildungselemente der alten Meister werden für das jeweilige Pferd geprüft und zu einem stärkenden Krafttraining fürs Pferd kombiniert – damit dein Pferd dich gesund tragen kann.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="thumb"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/videocapture_20250107-182420-high-4tvihl.jpg?enable-io=true&enable=upscale&crop=1.33%3A1&width=600" alt="Klassische Handarbeit mit Pferd in schöner Aufrichtung"></div>
+          <div class="body">
+            <h3>Gymnastizierende Bodenarbeit</h3>
+            <p>Klassische Handarbeit, Arbeit am Kappzaum, Longe und Doppellonge halten das Pferd fit und bereiten das Reiten der Lektionen vor.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="thumb"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/20150412_183111-high-j7glfq.jpg?enable-io=true&enable=upscale&crop=1.33%3A1&width=600" alt="Anti-Schreck-Training mit Flattervorhang beim Jungpferdetraining"></div>
+          <div class="body">
+            <h3>Grunderziehung und Jungpferdetraining</h3>
+            <p>Die Gewöhnung an die Ausrüstung, Medical Training, Führtraining, Horsemanship, Koordination und Angstbewältigung bilden die Basis für den sicheren Umgang mit dem Pferd.</p>
+          </div>
+        </div>
+        <div class="service-card">
+          <div class="thumb"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/20260126_151549-high.jpg?enable-io=true&enable=upscale&crop=1.33%3A1&width=600" alt="Franklinbälle und Hilfsmittel zur Sitzschulung des Reiters"></div>
+          <div class="body">
+            <h3>Sitzschulung</h3>
+            <p>Verschiedene Übungen helfen dem Reiter, Spannungen abzubauen, unbewusste Bewegungsmuster zu verändern und ein richtiges Timing für die Hilfen zu entwickeln.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT I OFFER -->
+  <section class="promise">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Was kann ich dir bieten?</div>
+        <h2 style="max-width:760px;">Ein roter Faden und die Verfeinerung der Basis</h2>
+        <p style="color:var(--ink-soft); font-size:16px; max-width:70ch; margin-top:16px;">Bevor ich mich entschied, selbst eine Ausbildung zum Pferdetrainer zu absolvieren, habe ich Unterricht und Coachings auch bei namenhaften Ausbildern genommen und bin trotzdem nicht so richtig vorangekommen, denn gefehlt hat mir folgendes: ein roter Faden und die Verfeinerung der Basis. Dies möchte ich dir nun anbieten.</p>
+      </div>
+      <div class="service-grid">
+        <div class="service-card" style="border-radius:18px;">
+          <div class="body">
+            <h3>1. Eine genaue Analyse</h3>
+            <p>Was hast du da für ein Pferd? Welchen Charakter hat es? Welche körperlichen Schwächen hat es? Wie steht es um seine Schiefe? Eine genaue Analyse ist die Grundlage dafür, die klassische Reitkunst als Physiotherapie und Krafttraining fürs Pferd zu nutzen und damit langfristig viele Kosten für Tierarzt und Osteopathen zu sparen.</p>
+          </div>
+        </div>
+        <div class="service-card" style="border-radius:18px;">
+          <div class="body">
+            <h3>2. Trainingsplan mit System</h3>
+            <p>Muskeln trainieren sich nicht an der Heuraufe. Neue Nervenverbindungen wachsen nur durch Wiederholung. Ich unterstütze dich so, dass du weißt, was du machst, warum du es machst und wie du es machst.</p>
+          </div>
+        </div>
+        <div class="service-card" style="border-radius:18px;">
+          <div class="body">
+            <h3>3. Genaue Erklärungen zu Details und Timing</h3>
+            <p>Die Verfeinerung der Basis ist Beginn und Ende der Ausbildung. Du lernst bei mir detailliert, wie du für dein individuelles Pferd sinnvolle Hilfen gibst, die auch wirklich helfen. Von unten und von oben.</p>
+          </div>
+        </div>
+        <div class="service-card" style="border-radius:18px;">
+          <div class="body">
+            <h3>4. Motivation, Empathie und Teamwork</h3>
+            <p>Ich verfolge einen lernpsychologischen Ansatz mit Rücksicht auf die Bedürfnisse des Pferdes und keine veraltete absolute Dominanztheorie. Du kennst dein Pferd am besten. Zusammen analysieren wir eure Probleme und Lösungsmöglichkeiten.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="ueber-mich">
+    <div class="wrap about-grid">
+      <div class="about-collage">
+        <div class="main"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/470102_245971995501503_1575503188_o-high.jpg?enable-io=true&enable=upscale&crop=0.8%3A1&width=800" alt="Jana beim Reiterumzug bei einem Fest in Südamerika mit Gauchos"></div>
+        <div class="float-card"><img src="https://primary.jwwb.nl/public/r/d/v/temp-dsnpcpmypmwtprkuyhlb/20151231_144641-high-2pudr2.jpg?enable-io=true&enable=upscale&crop=1%3A1&width=500" alt="Pferd frei und vertrauensvoll beim Gelassenheitstraining"></div>
+      </div>
+      <div>
+        <div class="eyebrow">Über mich</div>
+        <h2>Hallo, ich bin Jana</h2>
+        <p>38 Jahre alt, Mutter eines wunderbaren Sohnes, Diplom-Psychologin und pferdeverrückt seit meiner Kindheit. Seit 25 Jahren habe ich fast täglich Kontakt zu Pferden, auch auf verschiedenen Höfen im Ausland. Die größte Herausforderung begann vor 11 Jahren mit dem Kauf meines eigenen Pferdes: Durch eine genetische Muskelerkrankung, einen Koppelunfall und eine schwere Vergiftung als Jungpferd habe ich im Laufe der Jahre gefühlt alle Arten von Rehatraining ausprobiert. Erst die intensive Beschäftigung mit der klassischen Reitkunst hat dazu geführt, dass das Pferd heute dauerhaft reitbar ist.</p>
+        <p>Ich bin <strong>„Trainer IN-BALANCE"</strong> nach Esra Ruhland und bilde mich dort regelmäßig fort. Zudem bin ich ausgebildete <strong>Reittherapeutin/Reitpädagogin</strong> (Plennschützer Institut für pferdegestützte Interventionen) und kann dich besonders gut mit Übungen zu Achtsamkeit, Angst beim Reiten und Sitzschulung unterstützen. Als <strong>diplomierte Psychologin und approbierte Verhaltenstherapeutin</strong> besitze ich zudem ein detailliertes Verständnis von Verhaltensbiologie und lernpsychologischen Grundlagen.</p>
+        <div class="cred-row">
+          <span class="cred">Trainer IN-BALANCE (Esra Ruhland)</span>
+          <span class="cred">Reitpädagogin & Reittherapeutin</span>
+          <span class="cred">Diplom-Psychologin</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <section class="quote-section">
+    <div class="wrap">
+      <blockquote>„Mit der Anmut der Pferde verhält es sich wie mit dem Duft der Blüten: einmal geknickt kehren beide nie wieder zurück.“</blockquote>
+      <cite>Antoine de Pluvinel</cite>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="preise">
+    <div class="wrap pricing-inner">
+      <div>
+        <div class="eyebrow">Kosten</div>
+        <h2>Angebot und Preise</h2>
+        <p style="color:var(--ink-soft); font-size:15.5px; max-width:38ch;">Mobiler Reitunterricht und Pferdetraining. Einzelunterricht und Kurse auf Anfrage. Einzugsgebiet rund um Bad Aibling.</p>
+      </div>
+      <div>
+        <div class="price-card">
+          <div class="price-row highlight"><span>Unterrichtseinheit (ca. 60 Min.)</span><span class="amount">45,00 €</span></div>
+          <div class="price-row"><span>Ab 2 Schülern</span><span class="amount">40,00 €</span></div>
+          <div class="price-row"><span>Anfahrt bis 20 km von PLZ 83052</span><span class="amount">inklusive</span></div>
+          <div class="price-row"><span>Anfahrt ab 20 km von PLZ 83052</span><span class="amount">je nach Anzahl der Schüler – bitte nachfragen</span></div>
+          <div class="price-row"><span>Kurse</span><span class="amount">auf Anfrage</span></div>
+          <div class="price-row"><span>Online-Training</span><span class="amount">auf Anfrage</span></div>
+        </div>
+        <p class="price-note">Aktuell: die erste Kennenlern-Stunde gibt es zum halben Preis.</p>
+        <p class="price-note" style="margin-top:18px; font-style:italic;">„Anfänger neigen dazu, Unterricht für Fortgeschrittene zu nehmen. Fortgeschrittene neigen dazu, Unterricht für Könner zu nehmen. Aber die wirklichen Könner nehmen Unterricht für Anfänger." – Die Verfeinerung der Basis ist die Grundlage für alles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-band" id="kontakt">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">Kontakt</div>
+      <h2>Jetzt Termin vereinbaren</h2>
+      <p>Schreib mir eine Nachricht oder ruf einfach an – ich melde mich zurück und wir finden einen passenden Termin für dich und dein Pferd.</p>
+      <a href="https://api.whatsapp.com/send?phone=%2B4915773993898" class="btn-primary">Termin per WhatsApp anfragen →</a>
+      <div class="contact-methods">
+        <a href="tel:+4915773993898">📞 0157 739 93898</a>
+        <a href="mailto:ride2connection@web.de">✉️ ride2connection@web.de</a>
+        <span>📍 Bürgermeister-Huber-Str. 36, 83052 Bruckmühl</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="col">
+        <div class="footer-brand">Ride2Connection</div>
+        <p>Jana Globokar</p>
+        <p>Bürgermeister-Huber-Straße 36</p>
+        <p>83052 Bruckmühl</p>
+      </div>
+      <div class="col">
+        <p><a href="tel:+4915773993898">Mobil: 0157 739 93898</a></p>
+        <p><a href="mailto:ride2connection@web.de">ride2connection@web.de</a></p>
+        <p><a href="https://api.whatsapp.com/send?phone=%2B4915773993898">WhatsApp</a></p>
+      </div>
+      <div class="col">
+        <p>Mobiler Reitunterricht südöstlich von München</p>
+        <p>rund um Bruckmühl und Bad Aibling</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ride2Connection · Jana Globokar</span>
+      <span>Impressum · Datenschutz</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const header = document.querySelector('header');
+  const toggleHeader = () => {
+    if (window.scrollY > 60) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  toggleHeader();
+  window.addEventListener('scroll', toggleHeader, { passive: true });
+</script>
+
+</body>
+</html>
