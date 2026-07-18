@@ -54,7 +54,9 @@
     content:"";
     width:16px; height:1.5px;
     background:var(--clay);
+    flex-shrink:0;
   }
+  .eyebrow-short{display:none;}
 
   /* Announce bar */
   .announce{
@@ -157,7 +159,7 @@
   header.menu-open .nav-toggle span::after{top:0; transform:rotate(-45deg);}
 
   .mobile-panel{
-    display:none;
+    display:block;
     position:fixed;
     top:0; right:0;
     width:min(78vw, 320px);
@@ -169,8 +171,9 @@
     transform:translateX(100%);
     transition:transform .3s ease;
     box-shadow:-20px 0 40px rgba(28,26,23,0.14);
+    visibility:hidden;
   }
-  .mobile-panel.open{transform:translateX(0);}
+  .mobile-panel.open{transform:translateX(0); visibility:visible;}
   .mobile-panel ul{list-style:none; margin:0; padding:0; display:grid; gap:6px;}
   .mobile-panel a{
     display:block;
@@ -262,16 +265,28 @@
   }
   .btn-ghost:hover{border-color:#fff;}
 
-  /* Marquee style stat strip */
+  /* Stat cards */
   .stat-strip{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    padding:34px 0;
+    padding:60px 0;
   }
-  .stat-strip .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;}
-  .stat{min-width:140px;}
-  .stat .num{font-family:'Bricolage Grotesque',sans-serif; font-size:30px; font-weight:700; color:var(--clay);}
-  .stat .label{font-size:13px; color:var(--ink-soft); margin-top:4px;}
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+  }
+  .stat{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:28px 20px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+  }
+  .stat .num{font-family:'Bricolage Grotesque',sans-serif; font-size:30px; font-weight:700; color:var(--clay); line-height:1.1;}
+  .stat .label{font-size:13px; color:var(--ink-soft); margin-top:8px; line-height:1.4;}
 
   /* Intro / promise */
   .promise{padding:96px 0;}
@@ -443,12 +458,14 @@
 
   @media (max-width: 900px){
     .promise-grid, .about-grid, .pricing-inner{grid-template-columns:1fr;}
-    .about-collage{margin-bottom:70px;}
+    .about-collage{margin-bottom:70px; margin-left:18px;}
+    .about-collage .float-card{width:54%; bottom:-24px; left:-18px;}
     .service-grid{grid-template-columns:repeat(2,1fr);}
     .hero{height:82vh; min-height:520px; margin-top:-74px;}
     .nav-links, header .nav-cta{display:none;}
     .nav-toggle{display:flex;}
     .services, .about, .pricing, .cta-band, .promise{padding:64px 0;}
+    .stat-grid{grid-template-columns:1fr 1fr;}
   }
   @media (min-width: 901px){
     .nav-toggle, .mobile-panel, .nav-overlay{display:none !important;}
@@ -462,13 +479,16 @@
     .hero{height:auto; min-height:560px; margin-top:-70px; padding-top:70px;}
     .hero-content{padding-bottom:36px;}
     .hero-top p{font-size:15.5px; margin-bottom:22px;}
+    .eyebrow-full{display:none;}
+    .eyebrow-short{display:inline;}
     .btn-row{flex-direction:column; align-items:stretch; gap:12px;}
     .btn-primary, .btn-ghost{justify-content:center; text-align:center;}
     .btn-ghost{border:1.5px solid rgba(255,255,255,0.6); border-radius:999px; padding:14px 24px;}
 
-    .stat-strip{padding:26px 0;}
-    .stat-strip .wrap{display:grid; grid-template-columns:1fr 1fr; gap:22px 16px;}
-    .stat .num{font-size:24px;}
+    .stat-strip{padding:32px 0;}
+    .stat-grid{grid-template-columns:1fr 1fr; gap:14px;}
+    .stat{padding:20px 14px; border-radius:14px;}
+    .stat .num{font-size:22px;}
     .stat .label{font-size:12px;}
 
     .promise, .services, .about, .pricing, .cta-band{padding:52px 0;}
@@ -479,15 +499,16 @@
     .service-grid{grid-template-columns:1fr; gap:14px;}
     .service-card .body{padding:18px;}
 
+    .about-collage{margin-bottom:60px; margin-left:16px;}
     .about-collage .float-card{width:56%; bottom:-22px; left:-16px; border-width:4px;}
-    .about-collage{margin-bottom:56px;}
     .cred-row{gap:8px;}
     .cred{font-size:12px; padding:8px 13px;}
 
     .quote-section{padding:56px 0;}
     .quote-section blockquote{font-size:19px;}
 
-    .price-row{padding:15px 18px; font-size:13.5px; flex-wrap:wrap; gap:4px;}
+    .price-row{padding:14px 16px; font-size:12.5px; gap:10px;}
+    .price-row span:first-child{flex:1;}
     .price-row .amount{font-size:15px;}
 
     .cta-band p{font-size:15.5px;}
@@ -499,7 +520,7 @@
 
   @media (max-width: 380px){
     .hero-top h1{font-size:28px;}
-    .stat-strip .wrap{grid-template-columns:1fr 1fr;}
+    .stat-grid{grid-template-columns:1fr;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -545,7 +566,10 @@
     </div>
     <div class="wrap hero-content">
       <div class="hero-top">
-        <div class="eyebrow">Mobiler Reitunterricht · Rosenheim, Miesbach, Sauerlach, Aying, Ebersberg Süd</div>
+        <div class="eyebrow">
+          <span class="eyebrow-full">Mobiler Reitunterricht · Rosenheim, Miesbach, Sauerlach, Aying, Ebersberg Süd</span>
+          <span class="eyebrow-short">Mobiler Reitunterricht · Raum Rosenheim</span>
+        </div>
         <h1>Ride2Connection – <span>Klassische Reitkunst</span> mit System</h1>
         <p>Dein Traum ist ein stolzes, kraftvolles Pferd voller Ausdruck, das fein und aufmerksam auf deine leisesten Signale reagiert? Ein Training, das dein Pferd strahlen lässt, es als Lebewesen achtet und es nicht einfach nur benutzt – für die Momente wahrer Verbindung: „Connection".</p>
         <div class="btn-row">
@@ -560,10 +584,12 @@
 
   <div class="stat-strip">
     <div class="wrap">
-      <div class="stat"><div class="num">45 €</div><div class="label">Unterrichtseinheit, ca. 60 Min.</div></div>
-      <div class="stat"><div class="num">20 km</div><div class="label">Anfahrt inklusive ab PLZ 83052</div></div>
-      <div class="stat"><div class="num">25 Jahre</div><div class="label">Erfahrung im Umgang mit Pferden</div></div>
-      <div class="stat"><div class="num">100 %</div><div class="label">mobil, direkt bei dir vor Ort</div></div>
+      <div class="stat-grid">
+        <div class="stat"><div class="num">45 €</div><div class="label">Unterrichtseinheit, ca. 60 Min.</div></div>
+        <div class="stat"><div class="num">20 km</div><div class="label">Anfahrt inklusive ab PLZ 83052</div></div>
+        <div class="stat"><div class="num">25 Jahre</div><div class="label">Erfahrung im Umgang mit Pferden</div></div>
+        <div class="stat"><div class="num">100 %</div><div class="label">mobil, direkt bei dir vor Ort</div></div>
+      </div>
     </div>
   </div>
 
